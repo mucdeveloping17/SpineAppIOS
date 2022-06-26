@@ -30,7 +30,7 @@ struct TutorialView: View {
                         ZStack {
                             VStack(alignment: .center, spacing: 20) {
                                 Text("DEINE DIGITALE HEIMAT").font(AppUtility.shared.appFont(type: .Bold, size: 20))
-                                    .foregroundColor(.white).padding()
+                                    .foregroundColor(.white)
                                 Text("Hier, sind wir untereinander.\neine Gemeinschaft, die dich dafür liebt,\ndass Du Deine Individualität lebst.\n\neine Gemeinschaft, die verstanden hat, dass Entfaltung nur im Vertrauen geschieht.\n\nEine Gemeinschaft, die einander hilft.")
                                     .font(AppUtility.shared.appFont(type: .regular, size: 16))
                                     .foregroundColor(.white)
@@ -47,33 +47,33 @@ struct TutorialView: View {
                         ZStack {
                             VStack(alignment: .center, spacing: 20) {
                                 Text("HASS HAT HAUSARREST").font(AppUtility.shared.appFont(type: .Bold, size: 20))
-                                    .foregroundColor(.white).padding()
+                                    .foregroundColor(.white)
                                 Text("Hift uns gemeinsam, eine starke \nGemeinschaftaufzubauen.\n\nSei freundlich, höflich undhilfbereit.\n\nLass uns alle einander mit Respekt behandeln.\n\nRespektlose Kommentare werden sofort\ngelöscht und wir bittendich, jeglichen Verstoß\nsofort zu melden, umandere zu schützen.").font(AppUtility.shared.appFont(type: .regular, size: 16))
                                     .foregroundColor(.white)
                                     .multilineTextAlignment(.center)
-                            }
+                            }.padding(.top, -130)
                         }
                     )}
                     PageView.Page { AnyView(
                         ZStack {
                             VStack(alignment: .center, spacing: 20) {
                                 Text("ENTFALTUNG BRAUCHT\n          VERTRAUEN").font(AppUtility.shared.appFont(type: .Bold, size: 20))
-                                    .foregroundColor(.white).padding()
+                                    .foregroundColor(.white)
                                 Text("Lass Zensur und regionale Beschränkungen\n hinter dir.\n\n Diese Gemeinschaft trät die Verantwortung für sich, nicht wir und wir verkaufen dafür Deine Daten nicht an Dritte.").font(AppUtility.shared.appFont(type: .regular, size: 16))
                                     .foregroundColor(.white)
                                     .multilineTextAlignment(.center)
-                            }
+                            }.padding(.top, -190)
                         }
                     )}
                     PageView.Page { AnyView(
                         ZStack {
                             VStack(alignment: .center, spacing: 20) {
                                 Text("HIER BIN ICH MENSCH HIRE \n DARF ICH GANZ ICH SEIN").font(AppUtility.shared.appFont(type: .Bold, size: 20))
-                                    .foregroundColor(.white).padding()
+                                    .foregroundColor(.white)
                                 Text("Wir definieren uns nicht über Likes anderer, sondern über unser Wirken für die Gemeinschaft.\nDaher findest Du bei uns keine Anzeige deiner Likes. \n\n Anonyme Konten werden sofort gelöscht.").font(AppUtility.shared.appFont(type: .regular, size: 16))
                                     .foregroundColor(.white)
                                     .multilineTextAlignment(.center)
-                            }
+                            }.padding(.top, -170)
                         }
                     )}
                     PageView.Page { AnyView(

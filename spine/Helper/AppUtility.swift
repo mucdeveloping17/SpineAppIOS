@@ -104,6 +104,9 @@ extension AppUtility {
     func appFont(type: Font.PoppinsType, size: CGFloat) -> Font {
         return Font.Poppins(type: type, size: size)
     }
+    func appAvenirFont(type: Font.AvenirType, size: CGFloat) -> Font {
+        return Font.Avenir(type: type, size: size)
+    }
 }
 
 extension AppUtility {

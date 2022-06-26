@@ -29,10 +29,8 @@ struct ProfileVC: View {
                             //self.selection = 1
                            signInResponseModel.remove()
                           AppUtility.shared.userSettings.islogin = false
-                          
-                           AppUtility.shared.redirectToLoginScreen()
+                          AppUtility.shared.redirectToLoginScreen()
                            
-                            
                         })
                     }.padding(.top, 200)
                         .padding([.leading, .trailing], 30)

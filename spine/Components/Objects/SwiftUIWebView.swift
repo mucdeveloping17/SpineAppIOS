@@ -1,17 +1,17 @@
 //
-//  SwiftUIWebView.swift
+//  SwiftUIWKWebView.swift
 //  spine
 
 import SwiftUI
 import WebKit
 import Combine
 
-struct SwiftUIWebView: UIViewRepresentable {
+struct SwiftUIWKWebView: UIViewRepresentable {
     @ObservedObject var viewModel: WebViewModel
     
     let webView = WKWebView()
     
-    func makeUIView(context: UIViewRepresentableContext<SwiftUIWebView>) -> WKWebView {
+    func makeUIView(context: UIViewRepresentableContext<SwiftUIWKWebView>) -> WKWebView {
         let fontSetting = self.htmlHeaderWithCustomFont(16, lineHeight: 25)
         self.webView.navigationDelegate = context.coordinator
         self.webView.sizeToFit()
@@ -19,7 +19,7 @@ struct SwiftUIWebView: UIViewRepresentable {
         return self.webView
     }
     
-    func updateUIView(_ uiView: WKWebView, context: UIViewRepresentableContext<SwiftUIWebView>) {
+    func updateUIView(_ uiView: WKWebView, context: UIViewRepresentableContext<SwiftUIWKWebView>) {
         return
     }
     
@@ -35,7 +35,7 @@ struct SwiftUIWebView: UIViewRepresentable {
         }
     }
     
-    func makeCoordinator() -> SwiftUIWebView.Coordinator {
+    func makeCoordinator() -> SwiftUIWKWebView.Coordinator {
         Coordinator(viewModel)
     }
     
@@ -44,8 +44,8 @@ struct SwiftUIWebView: UIViewRepresentable {
     }
 }
 
-struct SwiftUIWebView_Previews: PreviewProvider {
+struct SwiftUIWKWebView_Previews: PreviewProvider {
     static var previews: some View {
-        SwiftUIWebView(viewModel: WebViewModel(htmlContent: "<h1 class=\"ql-indent-3\"><strong>Terms And Condition</strong></h1>"))
+        SwiftUIWKWebView(viewModel: WebViewModel(htmlContent: "<h1 class=\"ql-indent-3\"><strong>Terms And Condition</strong></h1>"))
     }
 }

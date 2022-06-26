@@ -178,6 +178,7 @@ struct OTPVC_Previews: PreviewProvider {
 struct OTPWithKAPin: UIViewRepresentable {
     var otpCode: String?
     var numberofElement: Int = 4
+    var color: UIColor = .white
     var didChangeCallback : (_ code: String) -> ()
     var didFinishCallback : (_ code: String) -> ()
     
@@ -199,17 +200,16 @@ struct OTPWithKAPin: UIViewRepresentable {
         pinView.pinLength = numberofElement
         //        pinView.secureCharacter = "\u{25CF}"
         pinView.interSpace = CGFloat(20)
-        pinView.textColor = UIColor.white
+        pinView.textColor = color
         pinView.shouldSecureText = false
         pinView.style = .underline
         
-        pinView.borderLineColor = UIColor.white
-        pinView.activeBorderLineColor = UIColor.white
+        pinView.borderLineColor = color
+        pinView.activeBorderLineColor = color
         pinView.borderLineThickness = 1
         pinView.activeBorderLineThickness = 2
         
-       // pinView.font = UIFont(fontStyle: AppUtility.shared.appFont(type: .regular, size: 20)) ?? UIFont.systemFont(ofSize: 20)
-       
+        //pinView.font = UIFont(fontStyle: FontStyle.Montserrat_Regular, size: 20) ?? UIFont.systemFont(ofSize: 20)
         pinView.keyboardType = .phonePad
         pinView.keyboardAppearance = .default
         //        pinView.placeholder = "******"

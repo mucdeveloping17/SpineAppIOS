@@ -7,6 +7,7 @@ target 'spine' do
   pod 'AlamofireObjectMapper'
   pod 'SVPinView', '~> 1.0'
   pod 'FBSDKCoreKit'
+  pod 'WaterfallGrid'
   pod 'FBSDKLoginKit'
   # Pods for spine
 

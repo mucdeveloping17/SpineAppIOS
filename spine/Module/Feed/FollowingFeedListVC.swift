@@ -20,7 +20,7 @@ struct FollowingFeedListVC: View {
                         FeedListCell(name: items.name ?? "", isSubmitted: items.isSubmitted ?? false)
                         .disabled((items.isSubmitted ?? false))
                     }
-                }.padding(.top)
+                }.padding(.top,40)
             }
         }
     }

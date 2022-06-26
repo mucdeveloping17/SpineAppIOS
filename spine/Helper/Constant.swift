@@ -165,9 +165,9 @@ struct K {
     }
     
     struct appColors {
-//        static let purple           = "purple"
         static let primaryBlack     = Color.init(hex: "#000000")
         static let primaryWhite     = Color.init(hex: "#FFFFFF")
+        static let dotColor         = Color.init(hex: "#FA6400")
         static let grey1            = "grey1"
         static let grey2            = "grey2"
         static let grey3            = "grey3"
@@ -176,6 +176,7 @@ struct K {
         static let error            = "error"
         static let warning          = "warning"
         static let appTheme         = Color.init(hex: "#B79888")
+        static let lightGray        = Color(UIColor.lightGray)
             
     }
     struct dateFomate {

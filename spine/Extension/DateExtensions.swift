@@ -144,6 +144,7 @@ extension Date {
         dateFormatter.dateFormat = "EEEE"
         return dateFormatter.string(from: self)
     }
+     */
 
     // EZSE : Get the month from the date
     public var monthAsString: String {
@@ -152,11 +153,16 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
-    // EZSE : Get the day from the date
-    public var day: Int {
-        return NSCalendar.current.component(Calendar.Component.day, from: self)
+    public var monthAs3String: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM"
+        return dateFormatter.string(from: self).uppercased()
     }
- */
+    
+    // EZSE : Get the day from the date
+//    public var day: Int {
+//        return NSCalendar.current.component(Calendar.Component.day, from: self)
+//    }
 }
 
 public extension Date {

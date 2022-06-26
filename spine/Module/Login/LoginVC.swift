@@ -29,7 +29,7 @@ struct LoginVC: View {
     
     var viewModel : LoginViewModel? = LoginViewModel()
     
-    var loginManager = FBSDKLoginManager()
+    var loginManager = LoginManager()
     let readPermissions =  ["public_profile", "email", "user_friends","user_birthday"]
     init(isRootView: Bool = false) {
             self.isRootView = isRootView
@@ -213,63 +213,66 @@ extension LoginVC {
             }
         }
     }
-    func showUserData()
-    {
-        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields" : "id, name, gender, first_name, last_name, locale, email"])
-        graphRequest.start(completionHandler: { (connection, result, error) -> Void in
-            
-            if ((error) != nil)
-            {
-                ShowToast.show(toatMessage: error.debugDescription)
-            }
-            else
-            {
-                let request = socialLoginRequestModel()
-                if let resultNew = result as? [String:Any] {
-                    print(resultNew)
-                    let email = resultNew["email"]  as? String
-                    let id = resultNew["id"]  as? String
-                    let name = resultNew["name"]  as? String
-                    request.email = email
-                    request.facebookId = id
-                    request.name = name
-                }
-
-                request.longitude = "22.3452"
-                request.latitude = "23.4535"
-                request.devicetoken = "saaadasd"
-                request.notifytoken = "saaadasd"
-                request.notifydevicetype = "iPhone"
-                viewModel?.socialLogin(request) { (response, status) in
-                    if response?.status == true {
-                        AppUtility.shared.redirectToMainScreen()
-                        if let message  = response?.message{
-                            ShowToast.show(toatMessage: message)
-                        }
-                    }else{
-
-                        if let response = response?.data {
-                            self.userLoginID = response.usersId ?? ""
-                            self.verificationCode = response.verificationPin ?? ""
-                            selection = 2
-                        }
-                        if let message  = response?.message{
-                            ShowToast.show(toatMessage: message)
-                        }
-
-                    }
-                }
-            }
-        })
-    }
+   
     func facebookLogin() {
-        loginManager.loginBehavior = .web
-        loginManager.logIn(withReadPermissions: self.readPermissions) { (result, error) in
-            if (FBSDKAccessToken.current() != nil){
-                self.showUserData()
-            }
-        }
-    }
+          loginManager.logIn(permissions: [.publicProfile, .email], viewController: nil) { loginResult in
+              switch loginResult {
+              case .failed(let error):
+                  print(error)
+              case .cancelled:
+                  print("User cancelled login.")
+              case .success(let grantedPermissions, let declinedPermissions, let accessToken):
+                  print("Logged in! \(grantedPermissions) \(declinedPermissions) \(accessToken)")
+                                  
+                  GraphRequest(graphPath: "me",parameters:  ["fields": "id, name, first_name, email"]).start { (connection, result, error) -> Void  in
+                      if (error == nil){
+                          let fbDetails = result as! NSDictionary
+                          print(fbDetails)
+                          let fbUserId = fbDetails["id"] ?? ""
+                          let fbAccessToken = AccessToken.current?.tokenString ?? ""
+
+                          let fbResult = "id=\(fbUserId)&accessToken=\(fbAccessToken)"
+                          let request = socialLoginRequestModel()
+                          let email = fbDetails["email"]  as? String
+                          let id = fbDetails["id"]  as? String
+                          let name = fbDetails["name"]  as? String
+                          request.email = email
+                          request.facebookId = id
+                          request.name = name
+                          request.longitude = "22.3452"
+                          request.latitude = "23.4535"
+                          request.devicetoken = "saaadasd"
+                          request.notifytoken = "saaadasd"
+                          request.notifydevicetype = "iPhone"
+                          viewModel?.socialLogin(request) { (response, status) in
+                              if response?.status == true {
+                                  AppUtility.shared.redirectToMainScreen()
+                                  if let message  = response?.message{
+                                      ShowToast.show(toatMessage: message)
+                                  }
+                              }else{
+
+                                  if let response = response?.data {
+                                      self.userLoginID = response.usersId ?? ""
+                                      self.verificationCode = response.verificationPin ?? ""
+                                      selection = 2
+                                  }
+                                  if let message  = response?.message{
+                                      ShowToast.show(toatMessage: message)
+                                  }
+
+                              }
+                          }
+                      }
+                      else
+                      {
+                          ShowToast.show(toatMessage: error.debugDescription)
+                      }
+                  
+                  }
+              }
+          }
+      }
 }
 
 struct LoginVC_Previews: PreviewProvider {

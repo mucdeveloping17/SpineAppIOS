@@ -34,7 +34,7 @@ struct ForgotPasswordVC: View {
                 .aspectRatio(contentMode: .fit)
                 .foregroundColor(.white)
         }
-    }
+     }
     }
     var body: some View {
         ZStack(alignment: .center) {
